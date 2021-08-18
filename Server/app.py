@@ -1,3 +1,4 @@
+import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, redirect
 
@@ -29,4 +30,4 @@ def get_data():
     return redirect("http://127.0.0.1:5000/result?head={}&par={}&error={}".format(head, par_new, error))
 
 if __name__ == '__main__':
-    app.run(host="localhost", port=8000)
+    app.run(hohost="0.0.0.0")

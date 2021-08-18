@@ -1,3 +1,4 @@
+import requests
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 
@@ -15,4 +16,4 @@ def rsult():
     return render_template('result.html', head=head, par=par, error=error)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
