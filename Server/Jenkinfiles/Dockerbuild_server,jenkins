@@ -10,7 +10,7 @@ pipeline {
         stage("create docker image") {
             steps {
                 dir ('Server')
-                    sh docker build server .
+                    sh 'docker build server .'
             }
         }
     }

@@ -1,7 +1,7 @@
 #!groovy
- properties([disableConcurrentBuilds()])
+properties([disableConcurrentBuilds()])
 
- pipeline {
+pipeline {
     agent any
     options {
          timestamps()
@@ -10,8 +10,8 @@
         stage("create docker image") {
             steps {
                 dir ('Client')
-                    sh docker build client .
+                    sh 'docker build client .'
             }
         }
     }
- }
+}
