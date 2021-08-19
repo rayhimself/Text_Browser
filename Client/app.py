@@ -1,8 +1,11 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
+
+remoute_server = os.getenv("TEXT-BROWSER-SERVER-SERVICE_SERVICE_HOST")
 
 @app.route('/')
 def index():
@@ -11,7 +14,7 @@ def index():
 @app.route('/send_data', methods=['POST'])
 def send_data():
     URL = request.form['search']
-    return redirect("http://127.0.0.1:8000/?URL={}".format(URL))
+    return redirect(remoute_server+":8000/?URL={}".format(URL))
 
 @app.route('/result', methods=['POST', 'GET'])
 def rsult():

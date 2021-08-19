@@ -1,8 +1,11 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, redirect
 
 app = Flask(__name__)
+
+remoute_server = os.getenv("TEXT-BROWSER-CLIENT-SERVICE_SERVICE_HOST")
 
 def parsing(res):
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -27,7 +30,7 @@ def get_data():
         head, par_new = parsing(r)
     except requests.exceptions.ConnectionError:
         error = "Error: Host unreachable"
-    return redirect("http://127.0.0.1:5000/result?head={}&par={}&error={}".format(head, par_new, error))
+    return redirect(remoute_server+":5000/result?head={}&par={}&error={}".format(head, par_new, error))
 
 if __name__ == '__main__':
     app.run(hohost="0.0.0.0")
