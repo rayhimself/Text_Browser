@@ -1,0 +1,12 @@
+#!groovy
+ properties([disableConcurrentBuilds()])
+
+ pipeline {
+     agent{
+         lable 'master'
+     }
+     options {
+         timestamps()
+     }
+
+ }

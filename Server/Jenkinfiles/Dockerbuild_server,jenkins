@@ -1,0 +1,19 @@
+#!groovy
+ properties([disableConcurrentBuilds()])
+
+ pipeline {
+    agent{
+         lable 'master'
+    }
+    options {
+         timestamps()
+    }
+    stages (
+        stage("create docker image") {
+            steps {
+                dir ('Server')
+                    sh docker build server .
+            }
+        }
+    )
+ }
