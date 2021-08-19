@@ -8,6 +8,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/send_data', methods=['POST'])
+def send_data():
+    URL = request.form['search']
+    return redirect("http://127.0.0.1:8000/?URL={}".format(URL))
+
 @app.route('/result', methods=['POST', 'GET'])
 def rsult():
     head = request.args['head']

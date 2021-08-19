@@ -15,7 +15,7 @@ def parsing(res):
 
 @app.route('/', methods=['POST', 'GET'])
 def get_data():
-    URL = request.form['search']
+    URL = request.args['URL']
     error = ''
     head = ''
     par_new = ''
