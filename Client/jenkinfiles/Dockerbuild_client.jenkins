@@ -2,11 +2,16 @@
  properties([disableConcurrentBuilds()])
 
  pipeline {
-     agent{
-         lable 'master'
-     }
-     options {
+    agent any
+    options {
          timestamps()
-     }
-
+    }
+    stages {
+        stage("create docker image") {
+            steps {
+                dir ('Client')
+                    sh docker build client .
+            }
+        }
+    }
  }
