@@ -9,8 +9,9 @@ pipeline {
     stages {
         stage("create docker image") {
             steps {
-                dir ('Client')
+                dir ('Client') {
                     sh 'docker build client .'
+                }
             }
         }
     }
