@@ -2,7 +2,13 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
+    environment {
+        registry = "rayhimself/text_browser_server"
+        registryCredential = 'dockerhub_id' 
+        dockerImage = '' 
+    }
     agent any
+    triggers { pollSCM('* * * * *') }
     options {
          timestamps()
     }
@@ -10,7 +16,18 @@ pipeline {
         stage("create docker image") {
             steps {
                 dir ('Server') {
-                    sh 'docker build .'
+                    script { 
+                        dockerImage = docker.build registry + ":latest" 
+                    }
+                }
+            }
+        }
+        stage('Deploy our image') { 
+            steps {
+                script {
+                    docker.withRegistry('', registryCredential){
+                        dockerImage.push()
+                    }
                 }
             }
         }
